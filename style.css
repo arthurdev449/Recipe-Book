@@ -1,0 +1,322 @@
+:root {
+    --text: #e0e7ff;
+    --background: #000722;
+    --primary: #6b8efe;       /* For headings, maybe active links */
+    --secondary: #9a011c;     /* Could be for accents, like hover states */
+    --accent: #fe9e24;        /* For links, buttons */
+
+    --surface: #000c3a;       /* A slightly lighter dark for cards/sections */
+    --border-color: #1a2b5c;  /* For borders or separators */
+
+    --font-family: 'Segoe UI', Arial, sans-serif;
+    --border-radius: 8px;     /* Slightly larger radius often looks good */
+    --spacing: 1rem;          /* Base spacing unit */
+    --large-spacing: 2rem;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6; /* Improved readability */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
+    margin-top: var(--large-spacing);
+    margin-bottom: var(--spacing);
+}
+
+p {
+    margin-bottom: var(--spacing);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+a:hover {
+    color: var(--primary); /* Change color on hover */
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%; /* Images are responsive by default */
+    height: auto;
+    display: block; /* Removes extra space below image */
+}
+
+/* Layout Specific Styles */
+
+.site-header {
+    background-color: var(--surface);
+    padding: var(--spacing) var(--large-spacing);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky; /* Make header stick to the top */
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.header-content {
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center content */
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: space-between; /* Space out title, nav, search */
+    align-items: center;
+}
+
+.site-title {
+    margin: 0;
+    font-size: 1.8rem; /* Adjust size */
+}
+
+.site-nav {
+    margin: var(--spacing) 0; /* Add some margin above/below nav */
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow category links to wrap */
+    gap: var(--spacing); /* Space between category links */
+}
+
+.category-list a {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--background); /* Background for tags */
+    color: var(--accent);
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.category-list a:hover,
+.category-list a.active {
+    background-color: var(--primary);
+    color: var(--background); /* Text color for active/hover */
+    text-decoration: none; /* No underline on hover/active for tags */
+}
+
+.search-container {
+    margin-left: var(--spacing); /* Space from nav */
+}
+
+#recipe-search {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 1rem;
+}
+
+#recipe-search::placeholder {
+    color: var(--text);
+    opacity: 0.7;
+}
+
+/* Main Recipe List Container */
+.recipe-list-container {
+    max-width: 1200px;
+    margin: var(--large-spacing) auto; /* Center content */
+    padding: 0 var(--large-spacing);
+    display: grid;
+    /* Responsive grid: auto-fit columns with min-width 300px, max 1fr */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--large-spacing); /* Space between grid items */
+}
+
+/* Recipe Card Preview */
+.recipe-card {
+    background-color: var(--surface);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Ensure rounded corners clip content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.recipe-link {
+    display: flex; /* Use flexbox for image/info layout */
+    text-decoration: none; /* No underline on the entire card link */
+    color: inherit; /* Inherit text color from parent */
+    height: 100%; /* Make link fill the card */
+}
+
+.recipe-card img {
+    width: 150px; /* Fixed width for the image in the preview */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Cover the area without distortion */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.recipe-card-info {
+    padding: var(--spacing);
+    flex-grow: 1; /* Allow info section to take remaining space */
+    display: flex; /* Use flexbox to stack info vertically */
+    flex-direction: column;
+}
+
+.recipe-card-title {
+    margin-top: 0;
+    margin-bottom: 0.5rem; /* Smaller margin below title */
+    color: var(--primary); /* Title color */
+}
+
+.recipe-card-short-description,
+.recipe-card-time {
+     margin-bottom: 0.5rem;
+     font-size: 0.9rem;
+     color: var(--text); /* Ensure text color is correct */
+}
+.recipe-card-time {
+    font-style: italic;
+    color: rgba(var(--text), 0.8); /* Slightly faded */
+    margin-top: auto; /* Push time to the bottom if flex column */
+}
+
+
+/* Individual Recipe Detail Page Styles (Apply to recipe-name.html) */
+/* These classes would be used in the recipe detail HTML files */
+
+.recipe-detail-container {
+    max-width: 800px; /* Narrower for readability */
+    margin: var(--large-spacing) auto;
+    padding: 0 var(--spacing);
+}
+
+.recipe-detail-image {
+    /* For a standard image */
+    margin-bottom: var(--large-spacing);
+    border-radius: var(--border-radius);
+    /* If you want it as a background: */
+    /* background-image: url('your-image.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* min-height: 300px; /* Give it some height */
+    /* display: flex; /* Use flex to center title maybe? */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* color: white; /* Text color over background image */
+    /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5); */
+}
+
+
+.recipe-info-block {
+    background-color: var(--surface);
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--large-spacing);
+    display: flex; /* Layout info items */
+    flex-wrap: wrap;
+    gap: var(--spacing);
+}
+
+.recipe-info-block span {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: var(--primary);
+}
+
+.ingredients-section ul,
+.instructions-section ol {
+    background-color: var(--surface);
+    padding: var(--spacing) var(--large-spacing); /* Padding inside lists */
+    border-radius: var(--border-radius);
+    list-style-position: inside; /* Keep markers inside padding */
+}
+
+.ingredients-section li,
+.instructions-section li {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--border-color); /* Separator */
+}
+
+.ingredients-section li:last-child,
+.instructions-section li:last-child {
+    border-bottom: none; /* No border on last item */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--surface);
+    color: rgba(var(--text), 0.7);
+    text-align: center;
+    padding: var(--spacing);
+    margin-top: var(--large-spacing);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column; /* Stack header items */
+        align-items: flex-start;
+    }
+
+    .site-nav {
+        width: 100%; /* Nav takes full width */
+        margin: var(--spacing) 0;
+    }
+
+    .category-list {
+        justify-content: center; /* Center category tags */
+        gap: 0.5rem; /* Smaller gap on mobile */
+    }
+
+    .search-container {
+        width: 100%; /* Search takes full width */
+        margin-left: 0;
+        margin-top: var(--spacing);
+    }
+
+    #recipe-search {
+        width: 100%; /* Search input takes full width */
+        box-sizing: border-box; /* Include padding/border in width */
+    }
+
+    .recipe-list-container {
+        padding: 0 var(--spacing); /* Adjust padding */
+        gap: var(--spacing); /* Smaller gap between cards */
+    }
+
+    .recipe-card-link {
+        flex-direction: column; /* Stack image and info vertically */
+    }
+
+    .recipe-card img {
+        width: 100%; /* Image takes full width */
+        height: 200px; /* Adjust height as needed */
+        object-position: top; /* Maybe focus top of image */
+    }
+
+    .recipe-card-info {
+         padding: var(--spacing) calc(var(--spacing) * 1.5); /* Add side padding */
+    }
+
+     .recipe-detail-container {
+        padding: 0 var(--spacing);
+     }
+}
+
+@media (max-width: 480px) {
+    .recipe-card img {
+         height: 150px; /* Smaller image on very small screens */
+    }
+     .recipe-card-info {
+         padding: var(--spacing); /* Standard padding */
+    }
+}
